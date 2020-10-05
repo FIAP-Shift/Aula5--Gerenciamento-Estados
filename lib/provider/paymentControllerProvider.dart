@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_shift_estados/model/payment.dart';
-
+//design pattern - singleton
 //classe ser filha de ChangeNotifier é um ponto crucial
 class PaymentControllerProvider extends ChangeNotifier {
   final List<Payment> _payments = [];
