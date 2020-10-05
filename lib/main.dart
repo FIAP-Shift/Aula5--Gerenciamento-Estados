@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shift_estados/firebaseNotifications.dart';
 import 'package:flutter_shift_estados/model/payment.dart';
+import 'package:flutter_shift_estados/provider/paymentControllerProvider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +17,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: ChangeNotifierProvider(
+        create: (context) => PaymentControllerProvider(),
+        child: MyHomePage(),
+      ),
     );
   }
 }
