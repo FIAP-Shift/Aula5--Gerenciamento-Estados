@@ -1,15 +1,21 @@
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_shift_estados/model/payment.dart';
+import 'package:flutter_shift_estados/provider/paymentControllerProvider.dart';
+import 'package:provider/provider.dart';
 
 class FirebaseNotifications {
 
+  BuildContext context;
+  PaymentControllerProvider controller;
   FirebaseMessaging _firebaseMessaging;
 
-  final void Function(Payment) callback;
-
-  FirebaseNotifications(this.callback);
+  FirebaseNotifications(this.context){
+    //estamos usando o ChangeNotifer como action
+    controller = Provider.of<PaymentControllerProvider>(context, listen: false);
+  }
 
   void setUpFirebase() {
     _firebaseMessaging = FirebaseMessaging();
@@ -28,7 +34,7 @@ class FirebaseNotifications {
       onMessage: (Map<String, dynamic> message) async {
         print("on message $message");
         Payment payment = Payment.fromJson(message);
-        callback(payment);
+        controller.add(payment);
       },
       onResume: (Map<String, dynamic> message) async {},
       onLaunch: (Map<String, dynamic> message) async {},
