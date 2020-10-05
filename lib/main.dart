@@ -48,18 +48,65 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Contas a pagar!"),
+        title: Text("Contas a pagar"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: payments.length == 0 ? Container(
+          padding: EdgeInsets.all(20),
+          child: Text(
+            "Nenhuma conta recebida neste momento...",
+            style: TextStyle(
+                fontSize: 25
             ),
-          ],
-        ),
+          )
+      ):
+      DataTable(
+        columns: <DataColumn>[
+          DataColumn(
+            label: Text(
+              'Tipo',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              'Local',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              'Valor',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ],
+        rows: getRows(),
       ),
     );
   }
+
+  List<DataRow> getRows(){
+    List<DataRow> rows = List();
+
+    payments.forEach((element) {
+      rows.add(
+          DataRow(
+            selected: element.selected,
+            cells: <DataCell>[
+              DataCell(Text(element.type)),
+              DataCell(Text(element.place)),
+              DataCell(Text("${element.value}")),
+            ],
+            onSelectChanged: (value) {
+              setState(() {
+                element.selected = value;
+              });
+            },
+          )
+      );
+    });
+    return rows;
+  }
+
+
 }
