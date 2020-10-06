@@ -4,6 +4,7 @@ import 'package:flutter_shift_estados/firebaseNotifications.dart';
 import 'package:flutter_shift_estados/mobx/paymentControllerMobx.dart';
 import 'package:flutter_shift_estados/model/payment.dart';
 import 'package:flutter_shift_estados/provider/paymentControllerProvider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 /*
@@ -15,11 +16,15 @@ invokeMethod -> methodChannel -> callHandler
 class ListAccountsPage extends StatelessWidget {
 
   //com MobX, precisa instanciar o Controller
-  PaymentControllerMobx paymentController = PaymentControllerMobx();
+  PaymentControllerMobx paymentController;
+
+  ListAccountsPage(){
+    paymentController = GetIt.I.get<PaymentControllerMobx>();
+  }
 
   @override
   Widget build(BuildContext context) {
-    new FirebaseNotifications(context).setUpFirebase();
+    new FirebaseNotifications().setUpFirebase();
 
     return Scaffold(
         appBar: AppBar(

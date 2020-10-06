@@ -1,0 +1,6 @@
+flutter_icons:
+  #texto = cria um outro icon
+  android: "launcher_icon"
+  #true: sobrescreve o ícone default da plataforma
+  ios: true
+  image_path: "images/flutter_favorite.png"

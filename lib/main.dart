@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shift_estados/listAccounts.dart';
+import 'package:flutter_shift_estados/mobx/paymentControllerMobx.dart';
 import 'package:flutter_shift_estados/provider/paymentControllerProvider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  GetIt getIt = GetIt.I;
+  getIt.registerSingleton<PaymentControllerMobx>(
+      PaymentControllerMobx()
+  );
   runApp(MyApp());
 }
 

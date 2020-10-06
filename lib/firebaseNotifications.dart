@@ -2,19 +2,25 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shift_estados/mobx/paymentControllerMobx.dart';
 import 'package:flutter_shift_estados/model/payment.dart';
 import 'package:flutter_shift_estados/provider/paymentControllerProvider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class FirebaseNotifications {
 
-  BuildContext context;
-  PaymentControllerProvider controller;
+  //USADOS NO PROVIDER
+  //BuildContext context;
+  //PaymentControllerProvider controller;
   FirebaseMessaging _firebaseMessaging;
 
-  FirebaseNotifications(this.context){
+  PaymentControllerMobx controller;
+
+  FirebaseNotifications(){
     //estamos usando o ChangeNotifer como action
-    controller = Provider.of<PaymentControllerProvider>(context, listen: false);
+    //controller = Provider.of<PaymentControllerProvider>(context, listen: false);
+    controller = GetIt.I.get<PaymentControllerMobx>();
   }
 
   void setUpFirebase() {
