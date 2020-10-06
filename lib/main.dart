@@ -19,10 +19,14 @@ class MyApp extends StatelessWidget {
       //ChangeNotifierProvider tem englobar todas as classes
       //que possam ouvir mudanças no changeNotifier, ou seja,
       //atuarem como consumers
-      home: ChangeNotifierProvider(
+      //COM PROVIDER
+      /*home: ChangeNotifierProvider(
         create: (context) => PaymentControllerProvider(),
         child: ListAccountsPage(),
-      ),
+      ),*/
+
+      //COM MOBX
+      home: ListAccountsPage()
     );
   }
 }
